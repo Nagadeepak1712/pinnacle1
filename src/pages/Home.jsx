@@ -1,32 +1,39 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, ArrowUpRight, Plus, Minus, Quote } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus, Minus, Quote, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { completedProjects, ongoingProjects } from '../data/projects';
+import CircularGallery from '../components/CircularGallery';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 
 export default function Home() {
   const [openService, setOpenService] = useState(0);
 
   const services = [
     {
-      title: "Construction & Contracting",
-      desc: "End-to-end residential and commercial building construction adhering strictly to engineering standards and safety protocols. We manage everything from foundation to finishing.",
-      img: "/h3.jpeg"
+      title: "Luxury Villas",
+      desc: "Custom-designed premium villas tailored to your lifestyle. We handle end-to-end construction, delivering exceptional architectural elegance, spacious layouts, and smart home integrations for ultimate comfort.",
+      img: "/service_villas.png"
     },
     {
-      title: "2D & 3D Architectural Planning",
-      desc: "Comprehensive floor plans, spatial optimization, and photorealistic 3D elevations to give you a clear vision of your project before execution.",
-      img: "/h3.1.jpeg"
+      title: "Premium Apartments",
+      desc: "High-quality, multi-story residential apartments built with robust structural engineering. We focus on optimal space utilization, modern amenities, and adhering to the highest safety and regulatory standards.",
+      img: "/service_apartments.png"
     },
     {
-      title: "Estimation & Fabrication",
-      desc: "Detailed structural material estimation and heavy industrial steel fabrication, ensuring accurate budgeting and structural integrity.",
-      img: "/as.jpeg"
+      title: "Commercial Buildings",
+      desc: "State-of-the-art office complexes and retail spaces designed for business growth. Our commercial constructions emphasize functional design, aesthetic glass facades, and durable heavy-duty infrastructure.",
+      img: "/service_commercial.png"
     },
     {
-      title: "Site Developing Work",
-      desc: "Land surveying, leveling, fencing, and complete site preparation for large plots and gated communities.",
-      img: "/h4.1.jpeg"
+      title: "Row Houses",
+      desc: "Beautifully connected modern row houses that offer the perfect balance of community living and private luxury. Ideal for suburban gated communities with identical, elegant architectural styling.",
+      img: "/service_rowhouses.png"
+    },
+    {
+      title: "Structural Fabrication",
+      desc: "Professional industrial steel fabrication and erection. We provide heavy-duty structural framework, detailed material estimation, and precision engineering for massive infrastructure and industrial projects.",
+      img: "/service_fabrication.png"
     }
   ];
 
@@ -39,12 +46,26 @@ export default function Home() {
     { title: "Final Inspection & Handover", desc: "A comprehensive multi-point quality check ensures your property is flawless before keys are handed over." }
   ];
 
-  const galleryImages = [
-    '/khilam.jpeg', '/1.jpeg', '/2.jpeg', '/3.jpeg', '/4.jpeg', '/5.jpeg', 
-    '/ap1.jpeg', '/ap2.jpeg', '/as.jpeg', '/c1.jpeg', '/c2.jpeg', '/c3.jpeg', 
-    '/car.jpeg', '/h1.jpeg', '/h3.1.jpeg', '/h3.jpeg', '/h4.1.jpeg', '/h4.jpeg', 
-    '/jvp1.jpeg', '/l1.jpeg', '/l2.jpeg', '/madurai ring road.jpeg', '/mduap.jpeg', 
-    '/mduap2.jpeg', '/navalur.jpeg'
+  const testimonials = [
+    {
+      name: "Mr. Rajesh K.",
+      role: "Residential Villa Owner",
+      text: "Smooth from start to finish. Pinnacle Builders & Promoters guided us through the entire construction phase with total clarity. From planning to execution, everything felt stress-free. We built faster than expected and above our target quality."
+    },
+    {
+      name: "Mrs. Priya & Family",
+      role: "Homeowner, Navalur",
+      text: "Their attention to detail and adherence to quality standards is unmatched. They helped us with the 3D elevation and executed it exactly as planned. Extremely satisfied with our new home!"
+    },
+    {
+      name: "Johnson Holdings",
+      role: "Commercial Developers",
+      text: "We partnered with Pinnacle for our commercial complex. The steel fabrication and structural integrity were flawless. They delivered on time and within budget. A highly professional team."
+    }
+  ];
+  const galleryItems = [
+    ...completedProjects.map(p => ({ image: p.image, text: p.title })),
+    ...ongoingProjects.map(p => ({ image: p.image, text: p.title }))
   ];
 
   return (
@@ -81,23 +102,31 @@ export default function Home() {
           </motion.div>
 
           {/* Center Video */}
-          <div className="mt-12 md:mt-24 relative w-full rounded-3xl overflow-hidden shadow-2xl bg-slate-900 pointer-events-auto mix-blend-luminosity">
+          <div className="mt-12 md:mt-24 relative w-full rounded-3xl overflow-hidden shadow-2xl bg-slate-900 pointer-events-auto mix-blend-luminosity group">
             <video 
-              src="/v.mp4" 
+              src="/web1.mp4" 
               className="w-full h-auto opacity-90"
               autoPlay
               loop
               muted
               playsInline
             />
+            {/* Logo Overlay */}
+            <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 z-10 pointer-events-none">
+              <img 
+                src="/logo.png" 
+                alt="Pinnacle Builders Logo Overlay" 
+                className="h-16 md:h-32 w-auto object-contain bg-white/95 p-3 rounded-xl shadow-2xl backdrop-blur-md transition-transform duration-500 group-hover:scale-105" 
+              />
+            </div>
           </div>
 
           {/* Bottom Hero */}
           <div className="mt-8 flex flex-col md:flex-row justify-between items-center gap-6 pointer-events-auto">
-            <div className="flex gap-4">
-              <Link to="/contact" className="bg-white text-slate-900 px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 shadow-sm hover:scale-105 transition-transform mix-blend-luminosity">
-                Book a Consultation <span className="bg-slate-900 text-white rounded-full p-1"><ArrowUpRight size={14} /></span>
-              </Link>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="https://wa.me/918190028664?text=Hi%2C%20I%20am%20interested%20in%20your%20services" target="_blank" rel="noopener noreferrer" className="bg-white text-slate-900 px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 shadow-sm hover:scale-105 transition-transform mix-blend-luminosity">
+                Contact Us on WhatsApp <span className="bg-slate-900 text-white rounded-full p-1"><ArrowUpRight size={14} /></span>
+              </a>
               <Link to="/projects" className="bg-white text-slate-900 px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 shadow-sm hover:scale-105 transition-transform">
                 View Portfolio <span className="bg-slate-900 text-white rounded-full p-1"><ArrowUpRight size={14} /></span>
               </Link>
@@ -237,31 +266,119 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4.5. GALLERY SECTION (DARK) */}
-      <section id="gallery" className="py-32 bg-[#0a0a0b] text-white px-6">
+      {/* 4.5. PROJECTS SECTION (PREMIUM) */}
+      <section id="projects" className="py-32 bg-[#0a0a0b] text-white px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight">Full Project Gallery</h2>
+          <div className="text-center mb-24">
+            <h2 className="text-5xl md:text-7xl font-serif tracking-tight mb-6">Our Projects</h2>
+            <div className="w-24 h-[2px] bg-[#b88d44] mx-auto mb-8" />
+            <p className="text-white/60 text-lg max-w-2xl mx-auto font-light">A showcase of our completed and ongoing developments, demonstrating our commitment to quality, design, and structural excellence.</p>
           </div>
 
-          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {galleryImages.map((src, idx) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {/* Show a mix of completed and ongoing for the showcase */}
+            {[...completedProjects.slice(0, 5), ...ongoingProjects.slice(0, 1)].map((project, idx) => (
+              <motion.div 
+                key={project.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
+                className="group cursor-pointer relative overflow-hidden rounded-[2rem] h-[500px] bg-[#0f1012] border border-white/5"
+              >
+                <img src={project.image} alt={project.title} className="w-full h-full object-contain p-4 transition-transform duration-1000 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <div className="absolute inset-x-0 bottom-0 p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="bg-[#b88d44] text-[#0b1d35] text-[10px] font-black uppercase tracking-widest px-4 py-1.5 inline-block mb-4 rounded-full">
+                    {project.status}
+                  </div>
+                  <h3 className="text-3xl font-serif text-white mb-3 leading-tight">{project.title}</h3>
+                  <div className="flex items-center text-[#b88d44] mb-4 text-xs font-bold tracking-widest uppercase">
+                    <MapPin size={16} className="mr-2" /> {project.location}
+                  </div>
+                  <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 overflow-hidden">
+                    <p className="text-white/70 font-light mb-6 line-clamp-2 leading-relaxed">
+                      {project.description}
+                    </p>
+                    <span className="text-white flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-[#b88d44] pb-1 inline-flex">
+                      View details <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="text-center mt-20">
+            <Link to="/projects" className="inline-flex items-center gap-4 bg-transparent border border-[#b88d44] text-[#b88d44] px-10 py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-[#b88d44] hover:text-[#0b1d35] transition-all duration-300">
+              View All Projects <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4.75. GALLERY SECTION */}
+      <section id="gallery" className="bg-[#0f1012] text-white py-32 px-6 border-b border-white/5">
+        <div className="max-w-7xl mx-auto mb-16 text-center">
+          <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-4">Interactive Gallery</h2>
+          <p className="text-white/50 text-lg">Swipe or drag to explore our stunning portfolio.</p>
+        </div>
+        <div style={{ height: '600px', position: 'relative' }} className="w-full">
+          <CircularGallery
+            bend={3}
+            textColor="#ffffff"
+            borderRadius={0.05}
+            scrollEase={0.15}
+            font="bold 30px serif"
+            scrollSpeed={5}
+            items={galleryItems}
+          />
+        </div>
+      </section>
+
+      {/* 5. TESTIMONIALS (DARK) */}
+      <section id="testimonials" className="bg-[#0f1012] text-white py-32 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight leading-tight mb-4">
+              Trusted by homeowners, developers & investors
+            </h2>
+            <p className="text-white/50 text-lg">Don't just take our word for it. Here is what our clients have to say.</p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, idx) => (
               <motion.div 
                 key={idx}
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: (idx % 4) * 0.1 }}
-                className="break-inside-avoid relative group rounded-xl overflow-hidden bg-white/5"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: idx * 0.2 }}
+                className="bg-white/5 border border-white/10 p-8 rounded-3xl relative group hover:border-[#b88d44]/50 transition-colors flex flex-col"
               >
-                <img 
-                  src={src} 
-                  alt={`Gallery Image ${idx + 1}`} 
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                  <Plus size={32} className="text-white drop-shadow-lg" />
+                <Quote size={48} className="text-white/10 absolute top-6 right-6 group-hover:text-[#b88d44]/20 transition-colors" />
+                <div className="mb-8 flex-grow">
+                  <div className="flex gap-1 mb-6 text-[#b88d44]">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-lg font-light leading-relaxed relative z-10 text-white/90">
+                    "{testimonial.text}"
+                  </p>
+                </div>
+                <div className="mt-auto pt-6 border-t border-white/10">
+                  <p className="font-bold tracking-wide uppercase text-sm">{testimonial.name}</p>
+                  <p className="text-[#b88d44] text-xs font-medium uppercase tracking-widest mt-1">{testimonial.role}</p>
                 </div>
               </motion.div>
             ))}
@@ -269,50 +386,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. TESTIMONIALS (DARK) */}
-      <section id="testimonials" className="bg-[#0f1012] text-white py-32 px-6">
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight leading-tight mb-12">
-              Trusted by homeowners, developers & investors
-            </h2>
-            <div className="relative">
-              <Quote size={64} className="text-white/10 absolute -top-8 -left-8" />
-              <p className="text-2xl font-light leading-relaxed mb-8 relative z-10">
-                "Smooth from start to finish. Pinnacle Builders & Promoters guided us through the entire construction phase with total clarity. From planning to execution, everything felt stress-free. We built faster than expected and above our target quality. Highly recommended!"
-              </p>
-              <div>
-                <p className="font-bold tracking-wide uppercase text-sm">Mr. Rajesh K.</p>
-                <p className="text-white/50 text-sm">Residential Villa Owner</p>
-              </div>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="rounded-3xl overflow-hidden h-[600px]">
-              <img src="/mduap2.jpeg" alt="Happy Client" className="w-full h-full object-cover" />
-            </div>
-            {/* Small floating secondary image */}
-            <div className="absolute -bottom-10 -right-10 w-64 h-48 rounded-2xl overflow-hidden border-8 border-[#0f1012] hidden md:block">
-              <img src="/l2.jpeg" alt="Completed Home" className="w-full h-full object-cover" />
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* 6. PROCESS SECTION (LIGHT) */}
-      <section className="py-32 bg-gradient-to-b from-white to-[#eef2f6] px-6">
+      <section id="process" className="py-32 bg-gradient-to-b from-white to-[#eef2f6] px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

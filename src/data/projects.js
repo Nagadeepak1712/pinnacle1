@@ -1,49 +1,88 @@
-export const landProjects = [
+export const completedProjects = [
   {
-    id: "l-101",
-    title: "Navalur Premium Plots",
-    location: "Navalur, Chennai",
-    area: "5 Acres",
+    id: "c-1",
+    title: "Navalur Site",
+    location: "Navalur",
     status: "Completed",
-    description: "Premium gated community plots with blacktop roads, street lights, and park areas.",
-    image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    features: ["Avenue Trees", "24/7 Security", "Potable Water", "Clear Title"]
+    category: "Residential",
+    description: "Successfully delivered project at Navalur Site.",
+    image: "/navalur.jpeg",
   },
   {
-    id: "l-102",
-    title: "Thalambur Greenfield",
-    location: "Thalambur, Chennai",
-    area: "12 Acres",
-    status: "Ongoing",
-    description: "Large scale site development focusing on eco-friendly landscaping and compound wall construction.",
-    image: "https://images.unsplash.com/photo-1629196914285-b153b984bf41?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    features: ["Fully Compounded", "Rainwater Harvesting", "Wide Internal Roads"]
+    id: "c-2",
+    title: "OMR Thalambur",
+    location: "OMR Thalambur",
+    status: "Completed",
+    category: "Residential",
+    description: "Successfully delivered project at OMR Thalambur.",
+    image: "/omr thalambur.jpeg",
+  },
+  {
+    id: "c-3",
+    title: "Velacherry",
+    location: "Velacherry",
+    status: "Completed",
+    category: "Commercial",
+    description: "Successfully delivered project at Velacherry.",
+    image: "/velacherry.jpeg",
+  },
+  {
+    id: "c-4",
+    title: "OMR Karapakkam",
+    location: "OMR Karapakkam",
+    status: "Completed",
+    category: "Apartments",
+    description: "Successfully delivered project at OMR Karapakkam.",
+    image: "/karapakkam.jpeg",
+  },
+  {
+    id: "c-5",
+    title: "ECR",
+    location: "ECR",
+    status: "Completed",
+    category: "Residential",
+    description: "Successfully delivered project at ECR.",
+    image: "/1.jpeg",
+  },
+  {
+    id: "c-6",
+    title: "Annai Teresa Street",
+    location: "Annai Teresa Street",
+    status: "Completed",
+    category: "Residential",
+    description: "Successfully delivered project at Annai Teresa Street.",
+    image: "/annaiteresa.jpeg",
+  },
+  {
+    id: "c-7",
+    title: "DLF Road",
+    location: "DLF Road",
+    status: "Completed",
+    category: "Commercial",
+    description: "Successfully delivered project at DLF Road.",
+    image: "/c1.jpeg",
   }
 ];
 
-export const constructionProjects = [
+export const ongoingProjects = [
   {
-    id: "c-201",
-    title: "Johnson Commercial Complex",
-    location: "Navalur Main Road",
-    type: "Commercial",
-    area: "15,000 Sq.Ft.",
-    status: "Completed",
-    description: "A state-of-the-art commercial building featuring a modern glass facade, ample parking, and structural steel fabrication.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    client: "Johnson Holdings",
-    timeline: "14 Months"
+    id: "o-1",
+    title: "Kovalam ECR",
+    location: "Kovalam ECR",
+    status: "Ongoing",
+    category: "Residential",
+    description: "Land work in progress at Kovalam ECR.",
+    image: "/kovalam.jpeg",
   },
   {
-    id: "c-202",
-    title: "Azure Residences",
-    location: "OMR, Chennai",
-    type: "Residential",
-    area: "4,500 Sq.Ft. (Per Villa)",
+    id: "o-2",
+    title: "Madurai",
+    location: "Madurai",
     status: "Ongoing",
-    description: "Ultra-luxury villas with premium finishes, private pools, and complete turnkey execution.",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-    client: "Private Client",
-    timeline: "18 Months"
+    category: "Residential",
+    description: "Ring Road ongoing project at Madurai.",
+    image: "/mduringroad.jpeg",
   }
 ];
+
+

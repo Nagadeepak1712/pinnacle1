@@ -19,7 +19,19 @@ export default function Navbar() {
   const navLinks = [
     { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/#services' },
+    { 
+      name: 'Projects', 
+      href: '/projects',
+      subLinks: [
+        { name: 'Residential', href: '/projects?category=Residential' },
+        { name: 'Commercial', href: '/projects?category=Commercial' },
+        { name: 'Apartments', href: '/projects?category=Apartments' }
+      ]
+    },
+    { name: 'Investors Guide', href: '/investors' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Testimonials', href: '/#testimonials' },
+    { name: 'Process', href: '/#process' },
   ];
 
   return (
@@ -37,18 +49,19 @@ export default function Navbar() {
            <motion.img 
               whileHover={{ scale: 1.05, rotate: -2 }}
               transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-              src="/logo.png" alt="Pinnacle Builders & Promoters Logo" className="h-10 w-auto object-contain rounded-md" 
+              src="/logo.png" alt="Pinnacle Builders & Promoters Logo" className="h-16 md:h-20 w-auto object-contain rounded-md -my-4" 
            />
-           <div className="flex flex-col text-[#158cba] uppercase leading-none mt-1">
-             <span className="text-2xl md:text-[26px] font-black tracking-normal mb-[1px]">
+           <div className="flex flex-col items-center justify-center leading-none mt-1 ml-1">
+             <span className="text-2xl md:text-[28px] font-serif text-[#0b1d35] tracking-[0.15em] mb-1.5">
                PINNACLE
              </span>
-             <span className="text-[9px] md:text-[10px] font-semibold tracking-[0.27em]">
-               BUILDERS
-             </span>
-             <span className="text-[9px] md:text-[10px] font-semibold tracking-[0.27em]">
-               & PROMOTERS
-             </span>
+             <div className="flex items-center w-full gap-1.5">
+               <div className="h-[1px] bg-[#b88d44] flex-grow"></div>
+               <span className="text-[7px] md:text-[8.5px] font-sans font-semibold tracking-[0.2em] text-[#b88d44] uppercase whitespace-nowrap">
+                 BUILDERS & PROMOTERS
+               </span>
+               <div className="h-[1px] bg-[#b88d44] flex-grow"></div>
+             </div>
            </div>
         </Link>
 
@@ -62,23 +75,39 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 + 0.2 }}
               >
-                {link.href.startsWith('/') && !link.href.includes('#') ? (
-                  <Link
-                    to={link.href}
-                    className="relative text-xs font-bold tracking-widest text-slate-600 hover:text-blue-600 uppercase transition-colors group"
-                  >
-                    {link.name}
-                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                ) : (
-                  <a
-                    href={link.href}
-                    className="relative text-xs font-bold tracking-widest text-slate-600 hover:text-blue-600 uppercase transition-colors group"
-                  >
-                    {link.name}
-                    <span className="absolute -bottom-2 left-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                  </a>
-                )}
+                <div className="relative group">
+                  {link.href.startsWith('/') && !link.href.includes('#') ? (
+                    <Link
+                      to={link.href}
+                      className="relative text-xs font-bold tracking-widest text-slate-600 hover:text-blue-600 uppercase transition-colors inline-block py-2"
+                    >
+                      {link.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      className="relative text-xs font-bold tracking-widest text-slate-600 hover:text-blue-600 uppercase transition-colors inline-block py-2"
+                    >
+                      {link.name}
+                      <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                  )}
+
+                  {link.subLinks && (
+                    <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-slate-100 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 overflow-hidden flex flex-col">
+                      {link.subLinks.map(subLink => (
+                        <Link 
+                          key={subLink.name} 
+                          to={subLink.href} 
+                          className="px-5 py-3 text-xs font-bold tracking-widest text-slate-600 hover:text-blue-600 hover:bg-slate-50 uppercase transition-colors border-b border-slate-50 last:border-0"
+                        >
+                          {subLink.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </motion.li>
             ))}
           </ul>
@@ -91,8 +120,10 @@ export default function Navbar() {
           transition={{ delay: 0.6 }}
           className="hidden md:flex items-center"
         >
-          <Link
-            to="/contact"
+          <a
+            href="https://wa.me/918190028664?text=Hi%2C%20I%20am%20interested%20in%20your%20services"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group relative overflow-hidden bg-slate-900 text-white px-6 py-2.5 rounded-full text-xs font-bold tracking-wide flex items-center gap-2 hover:bg-blue-600 transition-colors shadow-lg hover:shadow-blue-600/30"
           >
             <span className="relative z-10 flex items-center gap-2">
@@ -101,7 +132,7 @@ export default function Navbar() {
                 <ArrowUpRight size={14} className="group-hover:rotate-45 transition-transform" />
               </span>
             </span>
-          </Link>
+          </a>
         </motion.div>
 
         {/* Mobile Menu Button */}
@@ -134,14 +165,29 @@ export default function Navbar() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
+                    className="flex flex-col"
                   >
                     <a
                       href={link.href}
                       className="block py-3 px-4 rounded-xl text-slate-800 font-bold text-lg uppercase tracking-wider hover:bg-slate-50 hover:text-blue-600 transition-colors"
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={() => !link.subLinks && setMobileMenuOpen(false)}
                     >
                       {link.name}
                     </a>
+                    {link.subLinks && (
+                      <div className="flex flex-col pl-6 mt-1 border-l-2 border-slate-100 ml-6 gap-2">
+                        {link.subLinks.map(subLink => (
+                          <Link 
+                            key={subLink.name} 
+                            to={subLink.href}
+                            className="py-2 text-slate-600 font-bold text-sm uppercase tracking-wider hover:text-blue-600 transition-colors"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            {subLink.name}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
                   </motion.li>
                 ))}
               </ul>
@@ -151,13 +197,15 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <Link
-                  to="/contact"
+                <a
+                  href="https://wa.me/918190028664?text=Hi%2C%20I%20am%20interested%20in%20your%20services"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-blue-600 text-white px-5 py-4 rounded-full text-center font-bold tracking-wide flex items-center justify-center gap-2 hover:bg-slate-900 transition-colors shadow-lg hover:shadow-blue-600/30"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Get In Touch <ArrowUpRight size={18} />
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
           )}
