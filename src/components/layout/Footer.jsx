@@ -80,7 +80,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10">
           <Link to="/" className="flex items-center gap-4 md:gap-6 mb-8 md:mb-0">
-             <img src="/logo.png" alt="Pinnacle Builders & Promoters Logo" className="h-16 md:h-24 w-auto object-contain rounded-md" />
+             <img src="/logo.png" alt="Pinnacle Builders & Promoters Logo" className="h-16 md:h-24 w-auto object-contain bg-white/95 p-2 rounded-xl shadow-md" />
              <div className="flex flex-col items-center justify-center leading-none mt-1 ml-1">
                <span className="text-4xl md:text-5xl font-serif text-white tracking-[0.15em] mb-2">
                  PINNACLE

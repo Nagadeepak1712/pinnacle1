@@ -47,8 +47,13 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
            <motion.img 
-              whileHover={{ scale: 1.05, rotate: -2 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              animate={{ y: [0, -4, 0] }}
+              whileHover={{ scale: 1.05, rotate: -2, filter: 'brightness(1.2)' }}
+              transition={{ 
+                y: { repeat: Infinity, duration: 3, ease: 'easeInOut' },
+                scale: { type: 'spring', stiffness: 400, damping: 10 },
+                rotate: { type: 'spring', stiffness: 400, damping: 10 }
+              }}
               src="/logo.png" alt="Pinnacle Builders & Promoters Logo" className="h-16 md:h-20 w-auto object-contain rounded-md -my-4" 
            />
            <div className="flex flex-col items-center justify-center leading-none mt-1 ml-1">

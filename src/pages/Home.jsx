@@ -298,12 +298,9 @@ export default function Home() {
                     <MapPin size={16} className="mr-2" /> {project.location}
                   </div>
                   <div className="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 transition-all duration-700 overflow-hidden">
-                    <p className="text-white/70 font-light mb-6 line-clamp-2 leading-relaxed">
+                    <p className="text-white/70 font-light line-clamp-2 leading-relaxed">
                       {project.description}
                     </p>
-                    <span className="text-white flex items-center gap-2 text-xs font-bold tracking-widest uppercase border-b border-[#b88d44] pb-1 inline-flex">
-                      View details <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform" />
-                    </span>
                   </div>
                 </div>
               </motion.div>

@@ -2,26 +2,37 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { completedProjects, ongoingProjects } from '../data/projects';
 import { X, ZoomIn } from 'lucide-react';
+import StarBorder from '../components/StarBorder';
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Combine project images with our new service AI images for a rich gallery
+  // Combine project images with authentic project photos
   const galleryItems = [
     ...completedProjects.map(p => ({ src: p.image, title: p.title, category: "Completed Project" })),
     ...ongoingProjects.map(p => ({ src: p.image, title: p.title, category: "Ongoing Project" })),
-    { src: "/service_villas.png", title: "Luxury Villas", category: "Service" },
-    { src: "/service_apartments.png", title: "Premium Apartments", category: "Service" },
-    { src: "/service_commercial.png", title: "Commercial Buildings", category: "Service" },
-    { src: "/service_rowhouses.png", title: "Row Houses", category: "Service" },
-    { src: "/service_fabrication.png", title: "Structural Fabrication", category: "Service" }
+    { src: "/2.jpeg", title: "Site View", category: "Gallery" },
+    { src: "/ap2.jpeg", title: "Apartment", category: "Gallery" },
+    { src: "/as.jpeg", title: "Site View", category: "Gallery" },
+    { src: "/c2.jpeg", title: "Commercial", category: "Gallery" },
+    { src: "/c3.jpeg", title: "Commercial", category: "Gallery" },
+    { src: "/car.jpeg", title: "Parking", category: "Gallery" },
+    { src: "/h1.jpeg", title: "Residential", category: "Gallery" },
+    { src: "/h3.1.jpeg", title: "Residential", category: "Gallery" },
+    { src: "/jvp1.jpeg", title: "Project View", category: "Gallery" },
+    { src: "/khilam.jpeg", title: "Project View", category: "Gallery" },
+    { src: "/l2.jpeg", title: "Construction", category: "Gallery" },
+    { src: "/mduap.jpeg", title: "Madurai Project", category: "Gallery" },
+    { src: "/mduprj.jpeg", title: "Madurai Project", category: "Gallery" },
+    { src: "/thalambur.jpeg", title: "Thalambur", category: "Gallery" },
+    { src: "/mduap2.jpeg", title: "Madurai Project", category: "Gallery" }
   ];
 
   return (
-    <div className="bg-[#0f172a] min-h-screen pt-40 pb-32 relative overflow-hidden">
+    <div className="bg-white min-h-screen pt-40 pb-32 relative overflow-hidden">
       {/* Background Gradients */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-gradient-to-br from-blue-600/10 to-transparent blur-[100px]" />
+        <div className="absolute top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-gradient-to-br from-blue-600/5 to-transparent blur-[100px]" />
         <div className="absolute bottom-[20%] -right-[10%] w-[30%] h-[30%] rounded-full bg-gradient-to-tl from-[#b88d44]/10 to-transparent blur-[100px]" />
       </div>
 
@@ -29,12 +40,12 @@ export default function Gallery() {
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-serif text-white mb-6 tracking-tight"
+          className="text-5xl md:text-7xl font-serif text-[#0b1d35] mb-6 tracking-tight"
         >
           Gallery
         </motion.h1>
         <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-[#b88d44] to-transparent mx-auto mb-8" />
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto font-light mb-12">
+        <p className="text-slate-600 text-lg max-w-2xl mx-auto font-light mb-12">
           A visual showcase of our premium properties, construction capabilities, and completed projects.
         </p>
 
@@ -43,7 +54,7 @@ export default function Gallery() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative group bg-black"
+          className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 relative group bg-black"
         >
           <video 
             src="/v.mp4" 
@@ -68,7 +79,7 @@ export default function Gallery() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <motion.div 
-          className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           initial="hidden"
           animate="visible"
           variants={{
@@ -80,20 +91,23 @@ export default function Gallery() {
           }}
         >
           {galleryItems.map((item, idx) => (
-            <motion.div
+            <StarBorder
+              as={motion.div}
               key={idx}
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 }
               }}
-              className="break-inside-avoid relative rounded-2xl overflow-hidden group cursor-pointer border border-white/10 shadow-xl bg-slate-900"
+              className="relative rounded-2xl overflow-hidden group cursor-pointer border border-[#b88d44]/30 shadow-xl bg-slate-900 aspect-[4/3]"
               onClick={() => setSelectedImage(item)}
+              color="#b88d44"
+              thickness={3}
             >
-              <div className="relative w-full overflow-hidden">
+              <div className="relative w-full h-full overflow-hidden">
                 <img 
                   src={item.src} 
                   alt={item.title} 
-                  className="w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
@@ -110,7 +124,7 @@ export default function Gallery() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </StarBorder>
           ))}
         </motion.div>
       </div>
