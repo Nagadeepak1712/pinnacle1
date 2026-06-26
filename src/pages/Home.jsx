@@ -8,6 +8,13 @@ import { motion } from 'motion/react';
 
 export default function Home() {
   const [openService, setOpenService] = useState(0);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0;
+    }
+  }, []);
 
   const services = [
     {
@@ -104,6 +111,7 @@ export default function Home() {
           {/* Center Video */}
           <div className="mt-12 md:mt-24 relative w-full rounded-3xl overflow-hidden shadow-2xl bg-slate-900 pointer-events-auto mix-blend-luminosity group">
             <video 
+              ref={videoRef}
               src="/web1.mp4" 
               className="w-full h-auto opacity-90"
               autoPlay
@@ -116,6 +124,7 @@ export default function Home() {
               <img 
                 src="/logo.png" 
                 alt="Pinnacle Builders Logo Overlay" 
+                loading="lazy"
                 className="h-16 md:h-32 w-auto object-contain bg-white/95 p-3 rounded-xl shadow-2xl backdrop-blur-md transition-transform duration-500 group-hover:scale-105" 
               />
             </div>
@@ -173,6 +182,7 @@ export default function Home() {
               transition={{ type: "spring", bounce: 0.4, duration: 2.0, delay: 0.4 }}
               src="/building_cutout.png" 
               alt="Modern Building" 
+              loading="lazy"
               className="w-full h-auto drop-shadow-2xl" 
             />
           </div>
@@ -255,7 +265,7 @@ export default function Home() {
                       {service.desc}
                     </p>
                     <div className="w-full md:w-64 h-40 rounded-xl overflow-hidden shrink-0">
-                      <img src={service.img} alt={service.title} className="w-full h-full object-cover" />
+                      <img src={service.img} alt={service.title} loading="lazy" className="w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>
@@ -286,7 +296,7 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
                 className="group cursor-pointer relative overflow-hidden rounded-[2rem] h-[500px] bg-[#0f1012] border border-white/5"
               >
-                <img src={project.image} alt={project.title} className="w-full h-full object-contain p-4 transition-transform duration-1000 group-hover:scale-105" />
+                <img src={project.image} alt={project.title} loading="lazy" className="w-full h-full object-contain p-4 transition-transform duration-1000 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
                 
                 <div className="absolute inset-x-0 bottom-0 p-8 translate-y-8 group-hover:translate-y-0 transition-transform duration-500">

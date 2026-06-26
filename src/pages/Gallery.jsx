@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { completedProjects, ongoingProjects } from '../data/projects';
 import { X, ZoomIn } from 'lucide-react';
@@ -6,6 +6,13 @@ import StarBorder from '../components/StarBorder';
 
 export default function Gallery() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 2.0;
+    }
+  }, []);
 
   // Combine project images with authentic project photos
   const galleryItems = [
@@ -57,6 +64,7 @@ export default function Gallery() {
           className="w-full max-w-5xl mx-auto rounded-3xl overflow-hidden shadow-2xl border border-slate-200 relative group bg-black"
         >
           <video 
+            ref={videoRef}
             src="/v.mp4" 
             className="w-full h-auto object-cover opacity-90 transition-opacity duration-500 group-hover:opacity-100"
             autoPlay 
@@ -107,6 +115,7 @@ export default function Gallery() {
                 <img 
                   src={item.src} 
                   alt={item.title} 
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
