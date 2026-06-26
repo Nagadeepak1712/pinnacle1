@@ -120,15 +120,6 @@ export default function Home() {
               muted
               playsInline
             />
-            {/* Logo Overlay */}
-            <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 z-10 pointer-events-none">
-              <img 
-                src="/logo.png" 
-                alt="Pinnacle Builders Logo Overlay" 
-                loading="lazy"
-                className="h-16 md:h-32 w-auto object-contain bg-white/95 p-3 rounded-xl shadow-2xl backdrop-blur-md transition-transform duration-500 group-hover:scale-105" 
-              />
-            </div>
           </div>
 
           {/* Bottom Hero */}

@@ -75,12 +75,15 @@ export default function Gallery() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
           
           {/* Logo Overlay */}
-          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-10 pointer-events-none">
-            <img 
-              src="/logo.png" 
-              alt="Pinnacle Builders Logo" 
-              className="h-12 md:h-20 w-auto object-contain bg-white/95 p-2 md:p-3 rounded-xl shadow-2xl backdrop-blur-md transition-transform duration-500 group-hover:scale-105" 
-            />
+          <div className="absolute bottom-2 right-2 md:bottom-6 md:right-6 z-10 pointer-events-none">
+            <div className="bg-white/95 rounded-xl shadow-2xl backdrop-blur-md flex items-center justify-center w-28 h-28 md:w-56 md:h-48 transition-transform duration-500 group-hover:scale-105">
+              <img 
+                src="/logo.png" 
+                alt="Pinnacle Builders Logo" 
+                loading="lazy"
+                className="h-16 md:h-24 w-auto object-contain" 
+              />
+            </div>
           </div>
         </motion.div>
       </section>
