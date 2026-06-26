@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUpRight, Plus, Minus, Quote, MapPin } from 'lucide-rea
 import { Link } from 'react-router-dom';
 import { completedProjects, ongoingProjects } from '../data/projects';
 import CircularGallery from '../components/CircularGallery';
+import FAQSection from '../components/FAQSection';
 
 import { motion } from 'motion/react';
 
@@ -455,6 +456,8 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* 8. FAQ SECTION */}
+      <FAQSection />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import AppRoutes from './routes/AppRoutes';
 import RouteLoader from './components/RouteLoader';
+import Chatbot from './components/Chatbot';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <AppRoutes />
         </main>
         <Footer />
+        <Chatbot />
       </div>
     </BrowserRouter>
   );
