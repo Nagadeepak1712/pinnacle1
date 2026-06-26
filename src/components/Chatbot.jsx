@@ -6,7 +6,12 @@ import { faqData } from '../data/faqData';
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, sender: 'bot', text: "Hello! I'm the Pinnacle Assistant. How can I help you build your dream project today?" }
+    { 
+      id: 1, 
+      sender: 'bot', 
+      text: "Hello! I'm the Pinnacle Assistant. How can I help you build your dream project today?",
+      suggestions: ["What services do you offer?", "What is the average cost?", "Do you help with bank loans?"]
+    }
   ]);
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef(null);
@@ -56,13 +61,21 @@ export default function Chatbot() {
     }
 
     let botResponseText = "";
+    let nextSuggestions = [];
+    
     if (bestMatch && highestScore > 0) {
       botResponseText = bestMatch.answer;
+      
+      // Pick a few random questions from faqData that aren't the one just asked
+      const otherFaqs = faqData.filter(f => f.id !== bestMatch.id);
+      const shuffled = otherFaqs.sort(() => 0.5 - Math.random());
+      nextSuggestions = shuffled.slice(0, 3).map(f => f.question);
     } else {
       botResponseText = "I'm sorry, I didn't quite catch that. For complex inquiries, please contact us directly on WhatsApp at +91 81900 28664!";
+      nextSuggestions = ["How do I start a project with you?", "Where are you located?"];
     }
 
-    setMessages(prev => [...prev, { id: Date.now(), sender: 'bot', text: botResponseText }]);
+    setMessages(prev => [...prev, { id: Date.now(), sender: 'bot', text: botResponseText, suggestions: nextSuggestions }]);
   };
 
   return (
@@ -119,38 +132,39 @@ export default function Chatbot() {
 
             {/* Chat Area */}
             <div className="flex-1 p-4 overflow-y-auto bg-slate-50 flex flex-col gap-4">
-              {messages.map((msg) => (
-                <div 
-                  key={msg.id} 
-                  className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
+              {messages.map((msg, index) => (
+                <React.Fragment key={msg.id}>
                   <div 
-                    className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
-                      msg.sender === 'user' 
-                        ? 'bg-[#b88d44] text-white rounded-tr-none' 
-                        : 'bg-white text-slate-800 border border-slate-100 rounded-tl-none'
-                    }`}
+                    className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-              
-              {/* Preloaded Quick Reply Questions */}
-              {messages.length === 1 && (
-                <div className="flex flex-col gap-2 mt-2 items-start pl-2">
-                  <p className="text-xs text-slate-400 mb-1 ml-1">Suggested questions:</p>
-                  {["What services do you offer?", "What is the average cost?", "Do you help with bank loans?"].map((q, i) => (
-                    <button 
-                      key={i}
-                      onClick={() => handleSend(null, q)}
-                      className="text-[13px] bg-white border border-[#b88d44]/50 text-[#0b1d35] px-4 py-2 rounded-2xl hover:bg-[#b88d44] hover:text-white transition-colors shadow-sm text-left"
+                    <div 
+                      className={`max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
+                        msg.sender === 'user' 
+                          ? 'bg-[#b88d44] text-white rounded-tr-none' 
+                          : 'bg-white text-slate-800 border border-slate-100 rounded-tl-none'
+                      }`}
                     >
-                      {q}
-                    </button>
-                  ))}
-                </div>
-              )}
+                      {msg.text}
+                    </div>
+                  </div>
+                  
+                  {/* Preloaded Quick Reply Questions (Only show for the last message if it has suggestions) */}
+                  {index === messages.length - 1 && msg.suggestions && msg.suggestions.length > 0 && (
+                    <div className="flex flex-col gap-2 mt-1 items-start pl-2">
+                      <p className="text-xs text-slate-400 mb-1 ml-1">Suggested questions:</p>
+                      {msg.suggestions.map((q, i) => (
+                        <button 
+                          key={i}
+                          onClick={() => handleSend(null, q)}
+                          className="text-[13px] bg-white border border-[#b88d44]/50 text-[#0b1d35] px-4 py-2 rounded-2xl hover:bg-[#b88d44] hover:text-white transition-colors shadow-sm text-left"
+                        >
+                          {q}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
               
               <div ref={messagesEndRef} />
             </div>
