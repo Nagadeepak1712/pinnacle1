@@ -1,5 +1,6 @@
 import React from 'react';
 import { Award, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
+import StarBorder from '../components/StarBorder';
 
 export default function About() {
   const stats = [
@@ -24,20 +25,36 @@ export default function About() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-teal-300/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue/10 rounded-full blur-3xl"></div>
 
+          {/* Profile Card at the top */}
+          <div className="animate-popup relative z-10 mb-16 mx-auto max-w-4xl w-full drop-shadow-[0_0_15px_rgba(56,189,248,0.5)]">
+            <StarBorder as="div" color="#38bdf8" speed="4s" className="w-full h-full rounded-[20px] shadow-xl">
+              <div className="glass-card p-8 sm:p-10 border-l-8 border-l-brand-blue bg-white/80 flex flex-col md:flex-row items-center md:items-start gap-8 text-center md:text-left w-full h-full rounded-[inherit] shadow-none border-t-0 border-r-0 border-b-0">
+                <div className="bg-white rounded-full p-1.5 shadow-md flex-shrink-0">
+                  <img 
+                    src="/profile.png" 
+                    alt="Er. R. Ramaraj" 
+                    className="w-32 h-32 sm:w-40 sm:h-40 rounded-full object-cover object-top"
+                  />
+                </div>
+                <div className="flex-1 mt-2">
+                  <h4 className="text-2xl sm:text-3xl font-bold text-brand-dark mb-2">Er. R. Ramaraj, BE (Civil)</h4>
+                  <p className="text-brand-blue font-semibold text-lg mb-4">Managing Director</p>
+                  <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                    Over 20+ years of structural experience ensuring the highest standards of safety, durability, and aesthetics in every project.
+                  </p>
+                </div>
+              </div>
+            </StarBorder>
+          </div>
+
           <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
               <h3 className="text-3xl font-bold text-brand-dark mb-6 leading-tight">
                 Led by Experience. Driven by Excellence.
               </h3>
               <p className="text-slate-600 mb-6 text-lg leading-relaxed">
-                Under the expert leadership of our Managing Director, we have spent nearly two decades transforming the architectural landscape of Chennai and beyond. From residential complexes to heavy industrial fabrication, our commitment remains steadfast.
+                Under his expert leadership, we have spent nearly two decades transforming the architectural landscape of Chennai and beyond. From residential complexes to heavy industrial fabrication, our commitment remains steadfast.
               </p>
-              
-              <div className="glass-card rounded-2xl p-6 inline-block mb-8 border-l-4 border-l-brand-blue bg-white/50">
-                <h4 className="text-xl font-bold text-brand-dark">Er. R. Ramaraj, BE (Civil)</h4>
-                <p className="text-brand-blue font-medium mb-2">Managing Director</p>
-                <p className="text-slate-500 text-sm">Over 20+ years of structural experience ensuring the highest standards of safety, durability, and aesthetics in every project.</p>
-              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
