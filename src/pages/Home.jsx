@@ -83,11 +83,14 @@ export default function Home() {
       <section className="relative min-h-screen bg-white pt-32 pb-20 px-6 flex flex-col justify-between overflow-hidden">
         
 
-        {/* Massive Background Text */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none z-10 mt-10">
-          <h1 className="text-[18vw] font-black text-white text-center leading-none tracking-tighter mix-blend-overlay drop-shadow-xl">
-            BUILDERS
+        {/* Massive Background Text and SEO Heading */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none z-10 mt-10 flex flex-col items-center justify-center">
+          <h1 className="text-lg md:text-2xl font-medium text-white/60 text-center mb-2 tracking-widest drop-shadow-md mix-blend-overlay">
+            https://pinnaclebuilderspromoters.com/
           </h1>
+          <h2 className="text-[18vw] font-black text-white text-center leading-none tracking-tighter mix-blend-overlay drop-shadow-xl">
+            BUILDERS
+          </h2>
         </div>
 
         <div className="relative z-20 max-w-7xl mx-auto w-full pointer-events-none">
